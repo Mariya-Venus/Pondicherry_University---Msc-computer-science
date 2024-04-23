@@ -127,3 +127,40 @@ mysql> SELECT ORDER_NO,ORDER_DATE,PURCH_AMT FROM ORDERS WHERE SALESMAN_ID=5001;
 |    70005 | 2016-07-27 |    2400.6 |
 +----------+------------+-----------+
 2 rows in set (0.00 sec)
+
+mysql> select name from salesman where city ="Paris" and salesman_id = 5006;
++---------+
+| name    |
++---------+
+| MC Lyon |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select * from customer where city like 'New York';
++-------------+---------------+----------+-------+-------------+
+| CUSTOMER_ID | CUSTOMER_NAME | CITY     | GRADE | SALESMAN_ID |
++-------------+---------------+----------+-------+-------------+
+|        3002 | Nick Rimando  | New York |   100 |        5001 |
+|        3007 | Brad Davis    | New York |   200 |        5001 |
++-------------+---------------+----------+-------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer where grade = 200 and city not in('paris','london');
++-------------+---------------+------------+-------+-------------+
+| CUSTOMER_ID | CUSTOMER_NAME | CITY       | GRADE | SALESMAN_ID |
++-------------+---------------+------------+-------+-------------+
+|        3005 | Graham Zusi   | California |   200 |        5002 |
+|        3007 | Brad Davis    | New York   |   200 |        5001 |
++-------------+---------------+------------+-------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from salesman where name not like 'Nail Knite' order by salesman_id desc,city;
++-------------+------------+----------+------------+
+| SALESMAN_ID | NAME       | CITY     | COMMISSION |
++-------------+------------+----------+------------+
+|        5006 | MC Lyon    | Paris    |       0.14 |
+|        5005 | Pit Alex   | London   |       0.11 |
+|        5002 | Nil Knite  | Paris    |       0.13 |
+|        5001 | James Hoog | New York |       0.15 |
++-------------+------------+----------+------------+
+4 rows in set (0.00 sec)
